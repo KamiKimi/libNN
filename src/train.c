@@ -26,6 +26,7 @@ static bool test_generalization(struct NNetwork * network, double * general_cost
 static struct NNetwork * NNevolve(struct NNetwork * old, struct NNparam * param);
 
 static void NNclear_count(struct NNetwork * network);
+static void NNrelax(struct NNetwork * network, double turbulence);
 
 static inline int NNpropagate(struct NNetwork * network, double * init, bool direction, bool test);
 static int forward_prop(struct NNetwork * network, double * init);
@@ -132,29 +133,45 @@ struct NNetwork * NNtrain(struct NNetwork * network, struct NNparam * param) {
 
 		switch (param -> callback(network, general_cost, param)) {
 			case NNAUTO:
+				if (flag) {
+
+					if (backup != NULL)
+						NNfree(backup);
+
+					backup = network;
+					if ((network = NNevolve(backup, param)) == NULL)
+						goto fail;
+				} else {
+
+					if (network != NULL)
+						NNfree(network);
+
+					network = backup;
+					backup = NULL;
+				}
+
 				break;
+
 			case NNCONTINUE :
 				flag = true;
+
+				if (backup != NULL)
+					NNfree(backup);
+
+				backup = network;
+				if ((network = NNevolve(backup, param)) == NULL)
+					goto fail;
+
+				break;
+
+			case NNRETRAIN:
+				flag = true;
+				NNrelax(network, param -> turbulence);
+
 				break;
 			case NNTERMINATE :
 				goto done;
 		}
-
-		if (flag) {
-			if (backup != NULL)
-				NNfree(backup);
-
-			backup = network;
-			if ((network = NNevolve(backup, param)) == NULL)
-				goto fail;
-		} else {
-			if (network != NULL)
-				NNfree(network);
-
-			network = backup;
-			backup = NULL;
-		}
-
 	} while (flag);
 
 done:
@@ -190,7 +207,7 @@ fail:
 int NNtrain_core(struct NNetwork * network, unsigned int order, volatile double * post, pid_t ppid, struct NNparam * param) {
 
 	unsigned int inputs = network -> inputs, outputs = network -> outputs, v = network -> vertices, e = network -> edges;
-	int core = param -> core, freeze_steps = param -> freeze_steps, verbose = param -> verbose, frozen = 0, tolerance = param -> tolerance, tcount = 0, shrink = 0, brim = 0;
+	int core = param -> core, freeze_steps = param -> freeze_steps, verbose = param -> verbose, frozen = 0, tolerance = param -> tolerance, tcount = 0, shrink = 0, brim = 0, flag = 0;
 	size_t train_size = param -> train_size;
 	double step_size = param -> step_size, freeze_hold = param -> freeze_hold, vanish_hold = param -> vanish_hold, cost, last = 1.0/0.0, value, nuance,
 	(* train_set)[inputs + outputs] = (double (*)[inputs + outputs])param -> train_set,
@@ -220,7 +237,7 @@ int NNtrain_core(struct NNetwork * network, unsigned int order, volatile double 
 
 		NNclear_count(network);
 
-		cost = 0, nuance = 0;
+		cost = 0, nuance = 0, pos = order;
 
 		for (i = 0; i < batch_per_core; i++) {
 
@@ -231,13 +248,18 @@ int NNtrain_core(struct NNetwork * network, unsigned int order, volatile double 
 			for (j = 0; j < outputs; j++)
 				outs[j] = vertex[j].value, expects[j] = train_set[pos][inputs + j];
 
-			cost += eval_cost(outputs, outs, expects, derivatives);
+			if (flag) {
 
-			if (NNpropagate(network, derivatives, NN_BACKWARD, false) == -1)
-				goto fail;
+				cost += eval_cost(outputs, outs, expects, NULL);
+			} else {
+
+				cost += eval_cost(outputs, outs, expects, derivatives);
+
+				if (NNpropagate(network, derivatives, NN_BACKWARD, false) == -1)
+					goto fail;
+			}
 
 			pos += core;
-			pos %= train_size;
 		}
 
 		if (share != NULL) {
@@ -279,7 +301,7 @@ int NNtrain_core(struct NNetwork * network, unsigned int order, volatile double 
 						while (0 != (int)(share[0][i] + 0.5));
 					}
 
-					shrink++, k++;
+					shrink++, k++, flag = 1;
 					continue;
 				}
 			}
@@ -295,7 +317,7 @@ int NNtrain_core(struct NNetwork * network, unsigned int order, volatile double 
 				brim = 0, tcount = 0;
 			}
 
-			nuance = 0, shrink = 0;
+			nuance = 0, shrink = 0, flag = 0;
 
 			for (i = 0; i < e; i++) {
 				value = 0;
@@ -332,7 +354,7 @@ int NNtrain_core(struct NNetwork * network, unsigned int order, volatile double 
 				}
 
 				if (nuance > vanish_hold * vanish_hold) {
-					shrink++, k++;
+					shrink++, k++, flag = 1;
 					continue;
 				}
 			}
@@ -348,7 +370,7 @@ int NNtrain_core(struct NNetwork * network, unsigned int order, volatile double 
 				brim = 0, tcount = 0;
 			}
 
-			shrink = 0, nuance = 0;
+			shrink = 0, nuance = 0, flag = 0;
 
 			for (i = 0; i < e; i++) {
 				nuance += edges[i].nuance * edges[i].nuance,
@@ -541,6 +563,25 @@ void NNclear_count(struct NNetwork * network) {
 
 
 /*
+	relax the weight of a trained network in order to retrain
+
+	network -- the neural network to retrain
+	turbulence -- the random init factor
+*/
+
+void NNrelax(struct NNetwork * network, double turbulence) {
+
+	unsigned int i, e = network -> edges;
+	struct NNedge * edges = (void *)((struct NNvertex *)network -> contents + network -> vertices);
+
+	for (i = 0; i < e; i++)
+		edges[i].weight = NNrand(turbulence);
+
+	return;
+}
+
+
+/*
 	propagate the neural network
 
 	network -- the neural network to propagate
@@ -569,7 +610,7 @@ int NNpropagate(struct NNetwork * network, double * init, bool direction, bool t
 	return 0 on success, -1 on failed
 */
 
-int forward_prop(struct NNetwork * network, double * init) {//struct NNedge * edges = (void *)network -> contents + network -> vertices * sizeof(struct NNvertex);
+int forward_prop(struct NNetwork * network, double * init) {
 
 	struct NNiter * iter = NULL;
 	if ((iter = NNget_iter(network, NN_FORWARD)) == NULL)
@@ -582,11 +623,11 @@ int forward_prop(struct NNetwork * network, double * init) {//struct NNedge * ed
 	struct NNedge * edge;
 	void * buf;
 
-	while ((flag = NNiterate(&iter, &buf)) >= 0) {//if (NNdebug) printf("start\n");
+	while ((flag = NNiterate(&iter, &buf)) >= 0) {
 		value = 0;
 
 		switch (flag) {
-			case NNITER_IS_VERTEX ://if (NNdebug) printf("v\n");
+			case NNITER_IS_VERTEX :
 				vertex = buf;
 				if (vertex -> layer_index == 0) {
 					vertex -> value = init[i++];
@@ -601,12 +642,12 @@ int forward_prop(struct NNetwork * network, double * init) {//struct NNedge * ed
 				vertex -> value = value;
 				break;
 
-			case NNITER_IS_EDGE ://if (NNdebug) printf("e\n");
+			case NNITER_IS_EDGE :
 				edge = buf;
 				vertex = edge -> vertices[NN_BACKWARD];
 				edge -> value = (edge -> weight) * vertex -> activate(vertex -> value);
 				break;
-		}//if (NNdebug) printf("b\n");
+		}
 	}
 
 	if (flag == NNITER_IS_ERROR) {
@@ -640,7 +681,7 @@ int backward_prop(struct NNetwork * network, double * init, bool test) {//struct
 	struct NNvertex * vertex;
 	struct NNedge * edge;
 	void * buf;
-//if (NNdebug) printf("back: %d\n", edges[6].flag);
+
 	while ((flag = NNiterate(&iter, &buf)) >= 0) {
 		value = 0;
 
@@ -873,7 +914,7 @@ struct NNetwork * NNfission(struct NNetwork * network, double reaction_hold) {
 			j++;
 		}
 	}
-//printf("fi\n");
+
 	new -> vertices = j;
 	struct NNedge * edges = (void *)(vertices + v), * new_edges = (void *)(new_vertices + j), * edge;
 
@@ -892,7 +933,7 @@ struct NNetwork * NNfission(struct NNetwork * network, double reaction_hold) {
 		if (new_edges[k].vertices[NN_BACKWARD] == (& new_vertices[0]))
 			new_edges[k].value = new_edges[k].weight;
 	}
-//printf("fi\n");
+
 	NNfree(network);
 	v = j; j = k;
 
@@ -931,7 +972,7 @@ struct NNetwork * NNfission(struct NNetwork * network, double reaction_hold) {
 			}
 		}
 	}
-//printf("fi\n");
+
 	for (i = j; i < k; i++) {
 		new_edges[i].next[NN_FORWARD] = new_edges[i].vertices[NN_BACKWARD] -> edges[NN_FORWARD],
 		new_edges[i].next[NN_BACKWARD] = new_edges[i].vertices[NN_FORWARD] -> edges[NN_BACKWARD];
@@ -966,7 +1007,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 
 	if ((transfer = malloc((e + 1) * sizeof(struct NNedge *))) == NULL)
 		goto fail;
-//printf("fu\n");
+
 	for (i = 0, j = 0; i < e; i++) {
 
 		transfer[i] = NULL;
@@ -976,7 +1017,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 			transfer[j++] = & edges[i];
 		}
 	}
-//printf("fu\n");
+
 	transfer[i] = NULL;
 
 	if ((mount = malloc((j + 1) * sizeof(struct NNedge *))) == NULL)
@@ -1002,7 +1043,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 			transfer[i] = NULL, k++;
 		}
 	}
-//printf("fu\n");
+
 	mount[j] = NULL;
 
 	free(transfer); transfer = NULL;
@@ -1017,7 +1058,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 
 	new -> inputs = network -> inputs, new -> outputs = network -> outputs, new -> vertices = v + mount_size;
 	new_vertices = (void *)new -> contents, new_edges = (void *)(new_vertices + v + mount_size);
-//printf("fu\n");
+
 	for (i = 0, j = 0; i < v; i++) {
 		new_vertices[j].map = NULL,
 		new_vertices[j].edges[NN_BACKWARD] = NULL,
@@ -1043,7 +1084,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 
 		j++;
 	}
-//printf("fu\n");
+
 	for (i = 0, k = 0; i < e; i++) {
 		// if (edges[i].flag)
 		// 	continue;
@@ -1064,7 +1105,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 	free(index); index = NULL;
 
 	new_vertices += j;
-//printf("fu\n");
+
 	for (i = 0, l = 0; i < mount_size; i++) {
 
 		new_vertices[i].map = NULL,
@@ -1088,7 +1129,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 		k++;
 
 		j = 0;
-//printf("fun\n");
+
 		do {
 			from[j] = mount[l] -> vertices[NN_BACKWARD], to[j] = mount[l] -> vertices[NN_FORWARD];
 			j++;
@@ -1101,7 +1142,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 
 		qsort(from, j, sizeof(struct NNvertex *), & addr_compare),
 		qsort(to, j, sizeof(struct NNvertex *), & addr_compare);
-//printf("fun\n");
+
 		{
 			unsigned int m;
 			for (m = 0; m < j; m++) {
@@ -1121,7 +1162,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 				while ((m + 1 < j) && (from[m] == from[m + 1]))
 					m++;
 			}
-//printf("fun\n");
+
 			for (m = 0; m < j; m++) {
 
 				new_edges[k].flag = 0,
@@ -1141,7 +1182,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 			}		
 		}
 	}
-//printf("fu\n");
+
 	new -> edges = k;
 	NNfree(network), free(from), free(to), free(mount);
 

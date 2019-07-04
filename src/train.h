@@ -7,6 +7,7 @@
 
 #define NNAUTO 1
 #define NNCONTINUE 0
+#define NNRETRAIN 2
 #define NNTERMINATE -1
 
 
@@ -54,7 +55,6 @@ typedef int (* NNcallback)(struct NNetwork * network, double general_cost, struc
 	callback -- the call back function to call after each stage of training
 	train_size -- the entries of training set
 	test_size -- the entries of test set
-	batch_size -- size of samples to use in one batch (assumed to be multiples of core for convenience)
 	step_size -- the variation unit for gd (relatively small value preferred)
 	freeze_hold -- the freeze zone for cost, proceed only freeze_steps more steps while the sum of cost of one batch is less or equal to freeze_hold. If this value is negative, vanish_hold will be used instead.
 	vanish_hold -- This value has to be semi-positive(0 or above), determines whether some value has vanished (less or equal).
@@ -68,7 +68,7 @@ struct NNparam {
 	int core, freeze_steps, activ_index, verbose, tolerance;
 	NNcost eval_cost;
 	NNcallback callback;
-	size_t train_size, test_size, batch_size;
+	size_t train_size, test_size;
 	double step_size, freeze_hold, vanish_hold, turbulence, reaction_hold, ** train_set, ** test_set;
 };
 

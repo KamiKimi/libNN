@@ -33,7 +33,7 @@ int main(void) {
 	}
 
 	struct NNparam p = {0};
-	p.core = 4,
+	p.core = 8,
 	p.freeze_steps = 3,
 	p.activ_index = 2,
 	p.verbose = 1,
@@ -41,12 +41,11 @@ int main(void) {
 	p.callback = &callback,
 	p.train_size = 10000,
 	p.test_size = 2500,
-	p.batch_size = 10000,
 	p.step_size = 0.0003,
 	p.freeze_hold = 0.000003,
 	p.vanish_hold = 0.00000001,
 	p.tolerance = 3,
-	p.turbulence = 0.00001,
+	p.turbulence = 0.000001,
 	p.reaction_hold = 0.3,
 	p.train_set = train_set,
 	p.test_set = test_set;
@@ -68,13 +67,14 @@ int main(void) {
 
 int callback(struct NNetwork * network, double general_cost, struct NNparam * param) {
 
-	// static int i = 1;
-	// if ((i--) == 0)
-	// 	return NNTERMINATE;
-
-	// copy = NNcopy(network);
+	static double last = 1.0/0.0;
 
 	param -> step_size *= 0.7;
+
+	if (general_cost > last && general_cost > 1.0) {
+		last = general_cost;
+		return NNRETRAIN;
+	}
 
 	return NNAUTO;
 }
