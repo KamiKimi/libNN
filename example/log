@@ -1,0 +1,1317 @@
+stage 1 finished, cost : 355199096.564095
+
+buf: 0x0
+pop
+
+iter at 0x7f9da1000000 -- 0x7f9da1000060:
+size: 8
+brk: 2, at: 0x7f9da1000030
+direction: 0
+edge: 0x0
+
+vertex 1 at 0x7f9da1000028: 0x7f9da0402790
+
+
+
+buf: 0x7f9da0402880
+buf: 0x7f9da0402880
+push
+
+iter at 0x7f9da1000000 -- 0x7f9da1000060:
+size: 8
+brk: 4, at: 0x7f9da1000040
+direction: 0
+edge: 0x7f9da0402880
+
+vertex 1 at 0x7f9da1000028: 0x7f9da0402790
+vertex 2 at 0x7f9da1000030: 0x7f9da04027e0
+vertex 3 at 0x7f9da1000038: 0x0
+
+
+
+buf: 0x0
+pop
+
+iter at 0x7f9da1000000 -- 0x7f9da1000060:
+size: 8
+brk: 2, at: 0x7f9da1000030
+direction: 0
+edge: 0x0
+
+vertex 1 at 0x7f9da1000028: 0x7f9da04027e0
+
+
+
+buf: 0x7f9da04028d0
+buf: 0x7f9da04028d0
+push
+
+iter at 0x7f9da1000000 -- 0x7f9da1000060:
+size: 8
+brk: 4, at: 0x7f9da1000040
+direction: 0
+edge: 0x7f9da04028d0
+
+vertex 1 at 0x7f9da1000028: 0x7f9da04027e0
+vertex 2 at 0x7f9da1000030: 0x7f9da04027e0
+vertex 3 at 0x7f9da1000038: 0x0
+
+
+
+buf: 0x0
+pop
+
+iter at 0x7f9da1000000 -- 0x7f9da1000060:
+size: 8
+brk: 1, at: 0x7f9da1000028
+direction: 0
+edge: 0x0
+
+
+
+
+buf: 0x0
+pop
+
+iter at 0x7f9da0500000 -- 0x7f9da0500060:
+size: 8
+brk: 1, at: 0x7f9da0500028
+direction: 1
+edge: 0x0
+
+
+
+
+buf: 0x7f9da0402830
+buf: 0x7f9da0402830
+push
+buf: 0x7f9da0402880
+buf: 0x7f9da0402880
+push
+buf: 0x7f9da04028d0
+buf: 0x7f9da04028d0
+push
+s
+s
+s
+s
+buf: 0x0
+pop
+
+iter at 0x7f9da0500000 -- 0x7f9da0500060:
+size: 8
+brk: 1, at: 0x7f9da0500028
+direction: 1
+edge: 0x0
+
+
+
+
+buf: 0x7f9da1000250
+buf: 0x7f9da1000250
+push
+network at 0x7f9da1000060:
+
+inputs: 2, outputs: 1, vertices: 4, edges: 3
+
+vertex 0 at 0x7f9da1000070 -- 0x7f9da10000c0:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da10001b0
+edge backward: 0x0
+map: 0x0
+
+vertex 1 at 0x7f9da10000c0 -- 0x7f9da1000110:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1000200
+edge backward: 0x0
+map: 0x0
+
+vertex 2 at 0x7f9da1000110 -- 0x7f9da1000160:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1000250
+edge backward: 0x0
+map: 0x0
+
+vertex 3 at 0x7f9da1000160 -- 0x7f9da10001b0:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x0
+edge backward: 0x7f9da1000250
+map: 0x0
+
+
+
+edge 0 at 0x7f9da10001b0 -- 0x7f9da1000200:
+flag: 0
+weight: -38.200020
+value: -38.200020
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da1000070
+edge forward: 0x0
+edge backward: 0x0
+
+edge 1 at 0x7f9da1000200 -- 0x7f9da1000250:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da10000c0
+edge forward: 0x0
+edge backward: 0x7f9da10001b0
+
+edge 2 at 0x7f9da1000250 -- 0x7f9da10002a0:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da1000110
+edge forward: 0x0
+edge backward: 0x7f9da1000200
+
+
+
+buf: 0x7f9da1000200
+buf: 0x7f9da1000200
+push
+network at 0x7f9da1000060:
+
+inputs: 2, outputs: 1, vertices: 4, edges: 3
+
+vertex 0 at 0x7f9da1000070 -- 0x7f9da10000c0:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da10001b0
+edge backward: 0x0
+map: 0x0
+
+vertex 1 at 0x7f9da10000c0 -- 0x7f9da1000110:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1000200
+edge backward: 0x0
+map: 0x0
+
+vertex 2 at 0x7f9da1000110 -- 0x7f9da1000160:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1000250
+edge backward: 0x0
+map: 0x0
+
+vertex 3 at 0x7f9da1000160 -- 0x7f9da10001b0:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x0
+edge backward: 0x7f9da1000250
+map: 0x0
+
+
+
+edge 0 at 0x7f9da10001b0 -- 0x7f9da1000200:
+flag: 0
+weight: -38.200020
+value: -38.200020
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da1000070
+edge forward: 0x0
+edge backward: 0x0
+
+edge 1 at 0x7f9da1000200 -- 0x7f9da1000250:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da10000c0
+edge forward: 0x0
+edge backward: 0x7f9da10001b0
+
+edge 2 at 0x7f9da1000250 -- 0x7f9da10002a0:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da1000110
+edge forward: 0x0
+edge backward: 0x7f9da1000200
+
+
+
+buf: 0x7f9da10001b0
+buf: 0x7f9da10001b0
+push
+network at 0x7f9da1000060:
+
+inputs: 2, outputs: 1, vertices: 4, edges: 3
+
+vertex 0 at 0x7f9da1000070 -- 0x7f9da10000c0:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da10001b0
+edge backward: 0x0
+map: 0x0
+
+vertex 1 at 0x7f9da10000c0 -- 0x7f9da1000110:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1000200
+edge backward: 0x0
+map: 0x0
+
+vertex 2 at 0x7f9da1000110 -- 0x7f9da1000160:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1000250
+edge backward: 0x0
+map: 0x0
+
+vertex 3 at 0x7f9da1000160 -- 0x7f9da10001b0:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x0
+edge backward: 0x7f9da1000250
+map: 0x0
+
+
+
+edge 0 at 0x7f9da10001b0 -- 0x7f9da1000200:
+flag: 0
+weight: -38.200020
+value: -38.200020
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da1000070
+edge forward: 0x0
+edge backward: 0x0
+
+edge 1 at 0x7f9da1000200 -- 0x7f9da1000250:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da10000c0
+edge forward: 0x0
+edge backward: 0x7f9da10001b0
+
+edge 2 at 0x7f9da1000250 -- 0x7f9da10002a0:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da1000160
+vertex backward: 0x7f9da1000110
+edge forward: 0x0
+edge backward: 0x7f9da1000200
+
+
+
+s
+s
+fi
+fi
+fi
+s
+s
+s
+s
+buf: 0x0
+pop
+
+iter at 0x7f9da0500000 -- 0x7f9da0500060:
+size: 8
+brk: 1, at: 0x7f9da0500028
+direction: 1
+edge: 0x0
+
+
+
+
+buf: 0x7f9da18011f0
+buf: 0x7f9da18011f0
+push
+network at 0x7f9da1801000:
+
+inputs: 2, outputs: 1, vertices: 4, edges: 3
+
+vertex 0 at 0x7f9da1801010 -- 0x7f9da1801060:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1801150
+edge backward: 0x0
+map: 0x0
+
+vertex 1 at 0x7f9da1801060 -- 0x7f9da18010b0:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da18011a0
+edge backward: 0x0
+map: 0x0
+
+vertex 2 at 0x7f9da18010b0 -- 0x7f9da1801100:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da18011f0
+edge backward: 0x0
+map: 0x0
+
+vertex 3 at 0x7f9da1801100 -- 0x7f9da1801150:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x0
+edge backward: 0x7f9da18011f0
+map: 0x0
+
+
+
+edge 0 at 0x7f9da1801150 -- 0x7f9da18011a0:
+flag: 0
+weight: -38.200020
+value: -38.200020
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da1801010
+edge forward: 0x0
+edge backward: 0x0
+
+edge 1 at 0x7f9da18011a0 -- 0x7f9da18011f0:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da1801060
+edge forward: 0x0
+edge backward: 0x7f9da1801150
+
+edge 2 at 0x7f9da18011f0 -- 0x7f9da1801240:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da18010b0
+edge forward: 0x0
+edge backward: 0x7f9da18011a0
+
+
+
+buf: 0x7f9da18011a0
+buf: 0x7f9da18011a0
+push
+network at 0x7f9da1801000:
+
+inputs: 2, outputs: 1, vertices: 4, edges: 3
+
+vertex 0 at 0x7f9da1801010 -- 0x7f9da1801060:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1801150
+edge backward: 0x0
+map: 0x0
+
+vertex 1 at 0x7f9da1801060 -- 0x7f9da18010b0:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da18011a0
+edge backward: 0x0
+map: 0x0
+
+vertex 2 at 0x7f9da18010b0 -- 0x7f9da1801100:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da18011f0
+edge backward: 0x0
+map: 0x0
+
+vertex 3 at 0x7f9da1801100 -- 0x7f9da1801150:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x0
+edge backward: 0x7f9da18011f0
+map: 0x0
+
+
+
+edge 0 at 0x7f9da1801150 -- 0x7f9da18011a0:
+flag: 0
+weight: -38.200020
+value: -38.200020
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da1801010
+edge forward: 0x0
+edge backward: 0x0
+
+edge 1 at 0x7f9da18011a0 -- 0x7f9da18011f0:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da1801060
+edge forward: 0x0
+edge backward: 0x7f9da1801150
+
+edge 2 at 0x7f9da18011f0 -- 0x7f9da1801240:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da18010b0
+edge forward: 0x0
+edge backward: 0x7f9da18011a0
+
+
+
+buf: 0x7f9da1801150
+buf: 0x7f9da1801150
+push
+network at 0x7f9da1801000:
+
+inputs: 2, outputs: 1, vertices: 4, edges: 3
+
+vertex 0 at 0x7f9da1801010 -- 0x7f9da1801060:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da1801150
+edge backward: 0x0
+map: 0x0
+
+vertex 1 at 0x7f9da1801060 -- 0x7f9da18010b0:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da18011a0
+edge backward: 0x0
+map: 0x0
+
+vertex 2 at 0x7f9da18010b0 -- 0x7f9da1801100:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da18011f0
+edge backward: 0x0
+map: 0x0
+
+vertex 3 at 0x7f9da1801100 -- 0x7f9da1801150:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x0
+edge backward: 0x7f9da18011f0
+map: 0x0
+
+
+
+edge 0 at 0x7f9da1801150 -- 0x7f9da18011a0:
+flag: 0
+weight: -38.200020
+value: -38.200020
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da1801010
+edge forward: 0x0
+edge backward: 0x0
+
+edge 1 at 0x7f9da18011a0 -- 0x7f9da18011f0:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da1801060
+edge forward: 0x0
+edge backward: 0x7f9da1801150
+
+edge 2 at 0x7f9da18011f0 -- 0x7f9da1801240:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da1801100
+vertex backward: 0x7f9da18010b0
+edge forward: 0x0
+edge backward: 0x7f9da18011a0
+
+
+
+s
+s
+fu
+fu
+fu
+fu
+fu
+fu
+fun
+fun
+fun
+fu
+s
+s
+s
+s
+buf: 0x0
+pop
+
+iter at 0x7f9da0402ac0 -- 0x7f9da0402b30:
+size: 10
+brk: 1, at: 0x7f9da0402ae8
+direction: 1
+edge: 0x0
+
+
+
+
+buf: 0x7f9da0800380
+buf: 0x7f9da0800380
+push
+
+iter at 0x7f9da0402ac0 -- 0x7f9da0402b30:
+size: 10
+brk: 1, at: 0x7f9da0402ae8
+direction: 1
+edge: 0x7f9da0800380
+
+
+
+
+network at 0x7f9da0800000:
+
+inputs: 2, outputs: 1, vertices: 5, edges: 7
+
+vertex 0 at 0x7f9da0800010 -- 0x7f9da0800060:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: nan
+nuance: 0.000000
+count: nan
+edge forward: 0x7f9da0800290
+edge backward: 0xffffffffffffffff
+map: 0x0
+
+vertex 1 at 0x7f9da0800060 -- 0x7f9da08000b0:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: nan
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da08002e0
+edge backward: 0x7fffe94f8f9c
+map: 0x0
+
+vertex 2 at 0x7f9da08000b0 -- 0x7f9da0800100:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da0800330
+edge backward: 0x7fffe94f9019
+map: 0x0
+
+vertex 3 at 0x7f9da0800100 -- 0x7f9da0800150:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7ffff22b59f0
+edge backward: 0x7f9da0800380
+map: 0x0
+
+vertex 4 at 0x7f9da0800150 -- 0x7f9da08001a0:
+layer_index: 1
+activ_index: 2
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da0800380
+edge backward: 0x7f9da0800330
+map: 0x0
+
+
+
+edge 0 at 0x7f9da08001a0 -- 0x7f9da08001f0:
+flag: 0
+weight: -38.200020
+value: 0.000000
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800010
+edge forward: 0x0
+edge backward: 0x7fffe94f91b2
+
+edge 1 at 0x7f9da08001f0 -- 0x7f9da0800240:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800060
+edge forward: 0x7ffff22eb150
+edge backward: 0x7f9da08001a0
+
+edge 2 at 0x7f9da0800240 -- 0x7f9da0800290:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da08000b0
+edge forward: 0x7ffff22b5c30
+edge backward: 0x7f9da08001f0
+
+edge 3 at 0x7f9da0800290 -- 0x7f9da08002e0:
+flag: 0
+weight: -0.000004
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da0800010
+edge forward: 0x7f9da08001a0
+edge backward: 0x7fffe94f9053
+
+edge 4 at 0x7f9da08002e0 -- 0x7f9da0800330:
+flag: 0
+weight: -0.000009
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da0800060
+edge forward: 0x7f9da08001f0
+edge backward: 0x7f9da0800290
+
+edge 5 at 0x7f9da0800330 -- 0x7f9da0800380:
+flag: 0
+weight: -0.000004
+value: nan
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da08000b0
+edge forward: 0x7f9da0800240
+edge backward: 0x7f9da08002e0
+
+edge 6 at 0x7f9da0800380 -- 0x7f9da08003d0:
+flag: 0
+weight: -0.000002
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800150
+edge forward: 0x7ffff22b56f0
+edge backward: 0x7f9da0800240
+
+
+
+buf: 0x7f9da0800240
+buf: 0x7f9da0800240
+push
+network at 0x7f9da0800000:
+
+inputs: 2, outputs: 1, vertices: 5, edges: 7
+
+vertex 0 at 0x7f9da0800010 -- 0x7f9da0800060:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: nan
+nuance: 0.000000
+count: nan
+edge forward: 0x7f9da0800290
+edge backward: 0xffffffffffffffff
+map: 0x0
+
+vertex 1 at 0x7f9da0800060 -- 0x7f9da08000b0:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: nan
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da08002e0
+edge backward: 0x7fffe94f8f9c
+map: 0x0
+
+vertex 2 at 0x7f9da08000b0 -- 0x7f9da0800100:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da0800330
+edge backward: 0x7fffe94f9019
+map: 0x0
+
+vertex 3 at 0x7f9da0800100 -- 0x7f9da0800150:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7ffff22b59f0
+edge backward: 0x7f9da0800380
+map: 0x0
+
+vertex 4 at 0x7f9da0800150 -- 0x7f9da08001a0:
+layer_index: 1
+activ_index: 2
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da0800380
+edge backward: 0x7f9da0800330
+map: 0x0
+
+
+
+edge 0 at 0x7f9da08001a0 -- 0x7f9da08001f0:
+flag: 0
+weight: -38.200020
+value: 0.000000
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800010
+edge forward: 0x0
+edge backward: 0x7fffe94f91b2
+
+edge 1 at 0x7f9da08001f0 -- 0x7f9da0800240:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800060
+edge forward: 0x7ffff22eb150
+edge backward: 0x7f9da08001a0
+
+edge 2 at 0x7f9da0800240 -- 0x7f9da0800290:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da08000b0
+edge forward: 0x7ffff22b5c30
+edge backward: 0x7f9da08001f0
+
+edge 3 at 0x7f9da0800290 -- 0x7f9da08002e0:
+flag: 0
+weight: -0.000004
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da0800010
+edge forward: 0x7f9da08001a0
+edge backward: 0x7fffe94f9053
+
+edge 4 at 0x7f9da08002e0 -- 0x7f9da0800330:
+flag: 0
+weight: -0.000009
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da0800060
+edge forward: 0x7f9da08001f0
+edge backward: 0x7f9da0800290
+
+edge 5 at 0x7f9da0800330 -- 0x7f9da0800380:
+flag: 0
+weight: -0.000004
+value: nan
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da08000b0
+edge forward: 0x7f9da0800240
+edge backward: 0x7f9da08002e0
+
+edge 6 at 0x7f9da0800380 -- 0x7f9da08003d0:
+flag: 0
+weight: -0.000002
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800150
+edge forward: 0x7ffff22b56f0
+edge backward: 0x7f9da0800240
+
+
+
+buf: 0x7f9da08001f0
+buf: 0x7f9da08001f0
+push
+network at 0x7f9da0800000:
+
+inputs: 2, outputs: 1, vertices: 5, edges: 7
+
+vertex 0 at 0x7f9da0800010 -- 0x7f9da0800060:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: nan
+nuance: 0.000000
+count: nan
+edge forward: 0x7f9da0800290
+edge backward: 0xffffffffffffffff
+map: 0x0
+
+vertex 1 at 0x7f9da0800060 -- 0x7f9da08000b0:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: nan
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da08002e0
+edge backward: 0x7fffe94f8f9c
+map: 0x0
+
+vertex 2 at 0x7f9da08000b0 -- 0x7f9da0800100:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da0800330
+edge backward: 0x7fffe94f9019
+map: 0x0
+
+vertex 3 at 0x7f9da0800100 -- 0x7f9da0800150:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7ffff22b59f0
+edge backward: 0x7f9da0800380
+map: 0x0
+
+vertex 4 at 0x7f9da0800150 -- 0x7f9da08001a0:
+layer_index: 1
+activ_index: 2
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da0800380
+edge backward: 0x7f9da0800330
+map: 0x0
+
+
+
+edge 0 at 0x7f9da08001a0 -- 0x7f9da08001f0:
+flag: 0
+weight: -38.200020
+value: 0.000000
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800010
+edge forward: 0x0
+edge backward: 0x7fffe94f91b2
+
+edge 1 at 0x7f9da08001f0 -- 0x7f9da0800240:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800060
+edge forward: 0x7ffff22eb150
+edge backward: 0x7f9da08001a0
+
+edge 2 at 0x7f9da0800240 -- 0x7f9da0800290:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da08000b0
+edge forward: 0x7ffff22b5c30
+edge backward: 0x7f9da08001f0
+
+edge 3 at 0x7f9da0800290 -- 0x7f9da08002e0:
+flag: 0
+weight: -0.000004
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da0800010
+edge forward: 0x7f9da08001a0
+edge backward: 0x7fffe94f9053
+
+edge 4 at 0x7f9da08002e0 -- 0x7f9da0800330:
+flag: 0
+weight: -0.000009
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da0800060
+edge forward: 0x7f9da08001f0
+edge backward: 0x7f9da0800290
+
+edge 5 at 0x7f9da0800330 -- 0x7f9da0800380:
+flag: 0
+weight: -0.000004
+value: nan
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da08000b0
+edge forward: 0x7f9da0800240
+edge backward: 0x7f9da08002e0
+
+edge 6 at 0x7f9da0800380 -- 0x7f9da08003d0:
+flag: 0
+weight: -0.000002
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800150
+edge forward: 0x7ffff22b56f0
+edge backward: 0x7f9da0800240
+
+
+
+buf: 0x7f9da08001a0
+buf: 0x7f9da08001a0
+push
+network at 0x7f9da0800000:
+
+inputs: 2, outputs: 1, vertices: 5, edges: 7
+
+vertex 0 at 0x7f9da0800010 -- 0x7f9da0800060:
+layer_index: 0
+activ_index: 0
+value: 1.000000
+derivative: nan
+nuance: 0.000000
+count: nan
+edge forward: 0x7f9da0800290
+edge backward: 0xffffffffffffffff
+map: 0x0
+
+vertex 1 at 0x7f9da0800060 -- 0x7f9da08000b0:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: nan
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da08002e0
+edge backward: 0x7fffe94f8f9c
+map: 0x0
+
+vertex 2 at 0x7f9da08000b0 -- 0x7f9da0800100:
+layer_index: 0
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da0800330
+edge backward: 0x7fffe94f9019
+map: 0x0
+
+vertex 3 at 0x7f9da0800100 -- 0x7f9da0800150:
+layer_index: 4294967295
+activ_index: 0
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7ffff22b59f0
+edge backward: 0x7f9da0800380
+map: 0x0
+
+vertex 4 at 0x7f9da0800150 -- 0x7f9da08001a0:
+layer_index: 1
+activ_index: 2
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+edge forward: 0x7f9da0800380
+edge backward: 0x7f9da0800330
+map: 0x0
+
+
+
+edge 0 at 0x7f9da08001a0 -- 0x7f9da08001f0:
+flag: 0
+weight: -38.200020
+value: 0.000000
+derivative: 0.000000
+nuance: 568318.554503
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800010
+edge forward: 0x0
+edge backward: 0x7fffe94f91b2
+
+edge 1 at 0x7f9da08001f0 -- 0x7f9da0800240:
+flag: 0
+weight: 0.611552
+value: 0.000000
+derivative: 0.000000
+nuance: 4528245492.161189
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800060
+edge forward: 0x7ffff22eb150
+edge backward: 0x7f9da08001a0
+
+edge 2 at 0x7f9da0800240 -- 0x7f9da0800290:
+flag: 0
+weight: 84.506770
+value: 0.000000
+derivative: 0.000000
+nuance: 3144068024.341119
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da08000b0
+edge forward: 0x7ffff22b5c30
+edge backward: 0x7f9da08001f0
+
+edge 3 at 0x7f9da0800290 -- 0x7f9da08002e0:
+flag: 0
+weight: -0.000004
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da0800010
+edge forward: 0x7f9da08001a0
+edge backward: 0x7fffe94f9053
+
+edge 4 at 0x7f9da08002e0 -- 0x7f9da0800330:
+flag: 0
+weight: -0.000009
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da0800060
+edge forward: 0x7f9da08001f0
+edge backward: 0x7f9da0800290
+
+edge 5 at 0x7f9da0800330 -- 0x7f9da0800380:
+flag: 0
+weight: -0.000004
+value: nan
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800150
+vertex backward: 0x7f9da08000b0
+edge forward: 0x7f9da0800240
+edge backward: 0x7f9da08002e0
+
+edge 6 at 0x7f9da0800380 -- 0x7f9da08003d0:
+flag: 0
+weight: -0.000002
+value: 0.000000
+derivative: 0.000000
+nuance: 0.000000
+count: 0.000000
+vertex forward: 0x7f9da0800100
+vertex backward: 0x7f9da0800150
+edge forward: 0x7ffff22b56f0
+edge backward: 0x7f9da0800240
+
+
+
+buf: 0x7fffe94f91b2
+buf: 0x6e6f697461726570
+Segmentation fault: 11
