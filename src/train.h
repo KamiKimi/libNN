@@ -5,9 +5,9 @@
 
 #include "model.h"
 
+#define NNRETRAIN 2
 #define NNAUTO 1
 #define NNCONTINUE 0
-#define NNRETRAIN 2
 #define NNTERMINATE -1
 
 
@@ -57,9 +57,9 @@ typedef int (* NNcallback)(struct NNetwork * network, double general_cost, struc
 	test_size -- the entries of test set
 	step_size -- the variation unit for gd (relatively small value preferred)
 	freeze_hold -- the freeze zone for cost, proceed only freeze_steps more steps while the sum of cost of one batch is less or equal to freeze_hold. If this value is negative, vanish_hold will be used instead.
-	vanish_hold -- This value has to be semi-positive(0 or above), determines whether some value has vanished (less or equal).
+	vanish_hold -- This value has to be semi-positive(0 or above), determines whether some value has vanished (less or equal). This value will also use for initialize the network
 	reaction_hold -- the threshold for vertices fission and edges fusion (when general nuance is greater than this value)
-	turbulence -- a tiny random field act on the model's weight (positive value << 1, preferrably vanish_hold < turbulence < freeze_hold)
+	turbulence (deprecated) -- a tiny random field act on the model's weight (positive value << 1, preferrably vanish_hold < turbulence < freeze_hold)
 	train_set -- the 2-d matrix for training samples in the form double[train_size][inputs + outputs]
 	test_set -- the 2-d matrix for testing samples in the form double[test_size][inputs + outputs]
 */
@@ -69,7 +69,7 @@ struct NNparam {
 	NNcost eval_cost;
 	NNcallback callback;
 	size_t train_size, test_size;
-	double step_size, freeze_hold, vanish_hold, turbulence, reaction_hold, ** train_set, ** test_set;
+	double step_size, freeze_hold, vanish_hold, /*turbulence,*/ reaction_hold, ** train_set, ** test_set;
 };
 
 struct NNetwork * NNtrain(struct NNetwork * network, struct NNparam * param);

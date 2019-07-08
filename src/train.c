@@ -26,7 +26,7 @@ static bool test_generalization(struct NNetwork * network, double * general_cost
 static struct NNetwork * NNevolve(struct NNetwork * old, struct NNparam * param);
 
 static void NNclear_count(struct NNetwork * network);
-static void NNrelax(struct NNetwork * network, double turbulence);
+static void NNrelax(struct NNetwork * network, double vanish_hold);
 
 static inline int NNpropagate(struct NNetwork * network, double * init, bool direction, bool test);
 static int forward_prop(struct NNetwork * network, double * init);
@@ -34,7 +34,7 @@ static int backward_prop(struct NNetwork * network, double * init, bool test);
 
 static struct NNetwork * NNtruncate(struct NNetwork * network);
 static struct NNetwork * NNfission(struct NNetwork * network, double reaction_hold);
-static struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, double turbulence, int activ_index);
+static struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, double vanish_hold, int activ_index);
 
 static int unsigned_compare(const void *element1, const void *element2);
 static int addr_compare(const void *element1, const void *element2);
@@ -165,8 +165,8 @@ struct NNetwork * NNtrain(struct NNetwork * network, struct NNparam * param) {
 				break;
 
 			case NNRETRAIN:
-				flag = true;
-				NNrelax(network, param -> turbulence);
+				flag = true, j--;
+				NNrelax(network, param -> vanish_hold);
 
 				break;
 			case NNTERMINATE :
@@ -523,13 +523,13 @@ struct NNetwork * NNevolve(struct NNetwork * old, struct NNparam * param) {
 
 	if ((network = NNtruncate(network)) == NULL)
 		goto fail;
-NNsave(network, "test0.mod");
+
 	if ((network = NNfission(network, reaction_hold)) == NULL)
 		goto fail;
-NNsave(network, "test1.mod");
-	if ((network = NNfusion(network, reaction_hold, param -> turbulence, param -> activ_index)) == NULL)
+
+	if ((network = NNfusion(network, reaction_hold, param -> vanish_hold, param -> activ_index)) == NULL)
 		goto fail;
-NNsave(network, "test2.mod");
+
 	return network;
 
 fail:
@@ -569,13 +569,13 @@ void NNclear_count(struct NNetwork * network) {
 	turbulence -- the random init factor
 */
 
-void NNrelax(struct NNetwork * network, double turbulence) {
+void NNrelax(struct NNetwork * network, double vanish_hold) {
 
 	unsigned int i, e = network -> edges;
-	struct NNedge * edges = (void *)((struct NNvertex *)network -> contents + network -> vertices);
+	struct NNedge * edges = (void *)((struct NNvertex *)(void *)network -> contents + network -> vertices);
 
 	for (i = 0; i < e; i++)
-		edges[i].weight = NNrand(turbulence);
+		edges[i].weight = vanish_hold;
 
 	return;
 }
@@ -997,7 +997,7 @@ struct NNetwork * NNfission(struct NNetwork * network, double reaction_hold) {
 	return the new network on success, NULL on failed
 */
 
-struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, double turbulence, int activ_index) {
+struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, double vanish_hold, int activ_index) {
 
 	unsigned int v = network -> vertices, e = network -> edges, mount_size = 0, i, j, k, l, * index = NULL;
 
@@ -1090,7 +1090,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 		// 	continue;
 
 		new_edges[k].flag = 0,
-		new_edges[k].weight = NNrand(turbulence), /* edges[i].weight | NNrand(turbulence) */
+		new_edges[k].weight = vanish_hold, /* edges[i].weight | NNrand(turbulence) */
 		new_edges[k].nuance = edges[i].nuance,
 		new_edges[k].vertices[NN_FORWARD] = edges[i].vertices[NN_FORWARD] -> map,
 		new_edges[k].vertices[NN_BACKWARD] = edges[i].vertices[NN_BACKWARD] -> map;
@@ -1116,7 +1116,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 		new_vertices[i].nuance = 0;
 
 		new_edges[k].flag = 0,
-		new_edges[k].weight = NNrand(turbulence),
+		new_edges[k].weight = vanish_hold,
 		new_edges[k].value = 0,
 		new_edges[k].nuance = 0,
 		new_edges[k].vertices[NN_FORWARD] = & new_vertices[i],
@@ -1148,7 +1148,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 			for (m = 0; m < j; m++) {
 
 				new_edges[k].flag = 0,
-				new_edges[k].weight = NNrand(turbulence),
+				new_edges[k].weight = vanish_hold,
 				new_edges[k].nuance = 0,
 				new_edges[k].vertices[NN_FORWARD] = & new_vertices[i],
 				new_edges[k].vertices[NN_BACKWARD] = from[m] -> map;
@@ -1166,7 +1166,7 @@ struct NNetwork * NNfusion(struct NNetwork * network, double reaction_hold, doub
 			for (m = 0; m < j; m++) {
 
 				new_edges[k].flag = 0,
-				new_edges[k].weight = NNrand(turbulence),
+				new_edges[k].weight = vanish_hold,
 				new_edges[k].nuance = 0,
 				new_edges[k].vertices[NN_FORWARD] = to[m] -> map,
 				new_edges[k].vertices[NN_BACKWARD] = & new_vertices[i];

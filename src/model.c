@@ -315,6 +315,14 @@ struct NNetwork * NNcopy(struct NNetwork * network) {
 	return copy;
 }
 
+
+/*
+	dump the whole network structure
+
+	stream -- the writable stream dump to
+	network -- the neural network to dump
+*/
+
 void NNdump(FILE * stream, struct NNetwork * network) {
 
 	unsigned int v = network -> vertices, e = network -> edges, i;

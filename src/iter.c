@@ -24,6 +24,8 @@ static inline void swap(struct NNvertex ** vertices, size_t i, size_t j);
 static inline int NNlayer_compare(struct NNvertex ** vertices, unsigned int i, unsigned int j, bool direction);
 
 static inline size_t next_pow(size_t v);
+
+
 /* 
 	get an iterator for the neural network
 
@@ -207,10 +209,17 @@ struct NNvertex * NNiter_pop(struct NNiter * iter) { //if (NNdebug) printf("pop\
 		if (index == brk) 
 			iter -> brk = (brk >>= 1);
 	}
-//if (NNdebug) NNdump_iter(stdout, iter);
+
 	return vertex;
 }
 
+
+/*
+	dump the iterator structure
+
+	stream -- the writable stream sump to
+	iter -- the iteratore to dump
+*/
 
 void NNdump_iter(FILE * stream, struct NNiter * iter) {
 

@@ -48,7 +48,7 @@ double d_relu(double x) {
 	if (x > -1.0)
 		return 1;
 
-	return 0.00003;
+	return 0.000003;
 }
 
 unsigned int get_activ_index(NNActiv f) {

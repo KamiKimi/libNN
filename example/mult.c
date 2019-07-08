@@ -33,7 +33,7 @@ int main(void) {
 	}
 
 	struct NNparam p = {0};
-	p.core = 8,
+	p.core = 4,
 	p.freeze_steps = 3,
 	p.activ_index = 2,
 	p.verbose = 1,
